@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hidden Content</title>
+
+	<style>
+		.hidden-content .hidden {
+			max-height: 0px;
+			overflow: hidden;
+			transition: all 0.5s ease;
+		}
+		.hidden-content.active .hidden {
+			max-height: 500px;
+		}
+	</style>
+</head>
+<body>
+	<div class="hidden-content">
+		<button class="js-hidden">BTN HIDDEN</button>
+		<div class="hidden">
+			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero quasi, ex illum vel. Adipisci voluptates eius dicta maiores tempora ex possimus, quas tempore earum? Vitae assumenda nesciunt in dolor debitis quaerat dolorum, quia ex quas porro incidunt sunt. Quos autem error rem voluptas porro, natus placeat ad eum veritatis, perspiciatis nostrum asperiores totam maxime non ipsa architecto fugit possimus, dicta earum? Fugit odio consequuntur maiores maxime dolorum commodi, non similique et reiciendis amet necessitatibus, neque itaque reprehenderit perferendis magnam deleniti at sed, facere, molestias ratione? Cum obcaecati possimus nisi quo eligendi saepe et neque praesentium cumque totam. Itaque, laudantium, sint?</p>
+			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero quasi, ex illum vel. Adipisci voluptates eius dicta maiores tempora ex possimus, quas tempore earum? Vitae assumenda nesciunt in dolor debitis quaerat dolorum, quia ex quas porro incidunt sunt. Quos autem error rem voluptas porro, natus placeat ad eum veritatis, perspiciatis nostrum asperiores totam maxime non ipsa architecto fugit possimus, dicta earum? Fugit odio consequuntur maiores maxime dolorum commodi, non similique et reiciendis amet necessitatibus, neque itaque reprehenderit perferendis magnam deleniti at sed, facere, molestias ratione? Cum obcaecati possimus nisi quo eligendi saepe et neque praesentium cumque totam. Itaque, laudantium, sint?</p>
+		</div>
+	</div>
+
+	<script>
+		/* 
+		HIDDEN CONTENT ------------------------------------ */
+
+		function hidden() {
+			let btn = document.querySelectorAll('.js-hidden');
+
+			for (var i = 0; i < btn.length; i++) {
+				btn[i].addEventListener('click', function() {
+					this.closest('.hidden-content').classList.toggle('active');
+				});
+			}
+		}
+
+		hidden();
+	</script>
+</body>
+</html>
