@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tab</title>
+
+	<style>
+		.content-tab {display: none;}
+		.content-tab.active {display: block;}
+	</style>
+</head>
+<body>
+
+	<div class="tabs">
+		<ul class="control-tab">
+			<li data-tab="tab-1" class="active">Tab 1</li>
+			<li data-tab="tab-2">Tab 2</li>
+			<li data-tab="tab-3">Tab 3</li>
+		</ul>
+
+		<div class="content-tab tab-1 active">Tab content 1</div>
+		<div class="content-tab tab-2">Tab content 2</div>
+		<div class="content-tab tab-3">Tab content 3</div>
+	</div>
+	
+	<script>
+		/* 02 TABS
+		---------------------------------------------------- */
+
+		function tabs() {
+			let tabs = $('.tabs');
+			let controls = null;
+			let tabsItem = null;
+
+			tabs.each(function() {
+				controls = $(this).find('.control-tab li');
+				tabsItem = $(this).find('.content-tab');
+
+				controls.on('click', function() {
+					openTab($(this));
+				});
+			});
+
+			function openTab(_this) {
+				let clsTab = _this.attr('data-tab');
+				let tab = _this.closest('.tabs').find('.' + clsTab);
+
+				_this.closest('.control-tab').find('li').each(function() {
+					$(this).removeClass('active');
+				});
+
+				_this.closest('.tabs').find('.content-tab').each(function() {
+					$(this).removeClass('active');
+				});
+
+				_this.addClass('active');
+				tab.addClass('active');
+			}
+		}
+
+		tabs();
+	</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Popup</title>
+
+	<style>
+		.popup-overlay {
+			position: fixed;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			z-index: -999;
+			opacity: 0;
+			transition: opacity 0.5s;
+			background: rgba(0,0,0,.8);
+		}
+		.popup-overlay.active {opacity: 1;}
+		.popup {
+			position: absolute;
+			left: 50%;
+			z-index: -9991;
+			opacity: 0;
+			transition: opacity 0.5s 0.5s;
+		}
+		.popup.active {opacity: 1;}
+	</style>
+</head>	
+<body>
+
+	<button class="btn-popup" data-popup="popup-register">Popup Register</button>
+
+	<div class="popup-overlay"></div>
+	<div class="popup popup-register">Popup</div>
+	
+	<script>
+		/* 
+		05 POPUP ------------------------------------ */
+
+		function popup() {
+			let btn = document.querySelectorAll('.btn-popup');
+			let overlay = document.querySelector('.popup-overlay');
+			let popup = null;
+			let close = null;
+			let _this = this;
+
+			for (var i = 0; i < btn.length; i++) {
+				btn[i].addEventListener('click', function(e) {
+					e.preventDefault();
+
+					popup = document.querySelector('.' + this.getAttribute('data-popup'));
+					close = popup.querySelector('.popup-close');
+
+					let top  = window.pageYOffset || document.documentElement.scrollTop,
+		            left = window.pageXOffset || document.documentElement.scrollLeft;
+					
+					overlay.classList.add('active');
+					popup.classList.add('active');
+					popup.style.top = (top + 100) + 'px';
+
+					close.addEventListener('click', closePopup);
+		        	overlay.addEventListener('click', closePopup);
+				});
+			}
+
+			document.addEventListener('keydown', function(e) {
+				if (e.keyCode == 27) closePopup(e);
+			});
+
+			function closePopup(e) {
+		        e.preventDefault();
+
+		        overlay.classList.remove('active');
+		        popup.classList.remove('active');
+		    }
+		}
+
+		popup();
+	</script>
+</body>
+</html>
