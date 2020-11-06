@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Close Box</title>
+
+	<style>
+		.drop-down {position: relative;}
+		.drop-down .view {
+			cursor: pointer;
+			user-select: none;
+		}
+		.drop-down .drop {
+		    position: absolute;
+		    top: 100%;
+		    left: 0;
+		    max-height: 0;
+		    overflow: hidden;
+		    transition: max-height 0.3s ease;
+		}
+		.drop-down .drop.active {
+		    max-height: 300px;
+		}
+	</style>	
+</head>
+<body>
+	<div class="drop-down">
+		<div class="view"><span>$AU</span></div>
+		<ul class="drop">
+			<li>$AU</li>
+			<li>$UAH</li>
+			<li>$RUB</li>
+		</ul>
+	</div>
+
+	<script>
+		/* 01 DROP DOWN
+		---------------------------------------------------- */
+
+		function dropDown() {
+			let btnDrop = document.querySelectorAll('.drop-down .view');
+
+			for (var i = 0; i < btnDrop.length; i++) {
+				btnDrop[i].addEventListener('click', openDrop);
+			}
+
+			function openDrop(e) {
+				let parent = this.closest('.drop-down');
+				let view = this.querySelector('span');
+				let drop = this.nextElementSibling;
+				let li = drop.querySelectorAll('li');
+
+				drop.classList.toggle('active');
+				parent.classList.toggle('selected');
+
+				for (var i = 0; i < li.length; i++) {
+					li[i].addEventListener('click', function(){
+						view.textContent = this.textContent;
+						drop.classList.remove('active');
+						parent.classList.remove('selected');
+					});
+				}
+			}
+		}
+
+		dropDown();
+	</script>
+</body>
+</html>

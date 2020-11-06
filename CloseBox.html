@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Close Box</title>
+</head>
+<body>
+	<div class="close-box">Call to action banner i.e. Sale, Mother’s Day. Can be turned on or off <button class="js-close"></button></div>
+
+	<script>
+		/* 01 CLOSE BOX
+		---------------------------------------------------- */
+		function closeBox() {
+			let btnClose = document.querySelectorAll('.js-close');
+
+			for (var i = 0; i < btnClose.length; i++) {
+				btnClose[i].addEventListener('click', function() {
+					this.closest('.close-box').style.display = 'none';
+				});
+			}
+		}
+
+		closeBox();
+	</script>
+</body>
+</html>
